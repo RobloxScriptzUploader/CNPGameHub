@@ -173,51 +173,109 @@ UICorner_7.Parent = TextButton_6
 
 -- Scripts
 
-local function ZRSBUFN_fake_script() -- TextButton.LocalScript 
+local function HCKQN_fake_script() -- TextButton.LocalScript 
 	local script = Instance.new('LocalScript', TextButton)
 
 	script.Parent.MouseButton1Click:Connect(function()
-		loadstring(game:HttpGet("https://pastebin.com/raw/2n9EJYk7", true))()
+		noclip = false
+		game:GetService('RunService').Stepped:connect(function()
+			if noclip then
+				game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+			end
+		end)
+		plr = game.Players.LocalPlayer
+		mouse = plr:GetMouse()
+		mouse.KeyDown:connect(function(key)
+	
+			if key == "e" then
+				noclip = not noclip
+				game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+			end
+		end)
+		print('Loaded')
+		print('Press "E" to noclip')
 	end)
 end
-coroutine.wrap(ZRSBUFN_fake_script)()
-local function IASDHIG_fake_script() -- TextButton_2.LocalScript 
+coroutine.wrap(HCKQN_fake_script)()
+local function QLII_fake_script() -- TextButton_2.LocalScript 
 	local script = Instance.new('LocalScript', TextButton_2)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		loadstring(game:HttpGet("https://gist.githubusercontent.com/paygammy/6741e61a09c8aabe9afd1635da856168/raw"))()
 	end)
 end
-coroutine.wrap(IASDHIG_fake_script)()
-local function XEFHN_fake_script() -- TextButton_3.LocalScript 
+coroutine.wrap(QLII_fake_script)()
+local function XZFM_fake_script() -- TextButton_3.LocalScript 
 	local script = Instance.new('LocalScript', TextButton_3)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/SXNTII/VadriftsHost/main/VadriftsV3.lua"))()
 	end)
 end
-coroutine.wrap(XEFHN_fake_script)()
-local function PLAMSJV_fake_script() -- TextButton_4.LocalScript 
+coroutine.wrap(XZFM_fake_script)()
+local function YQCG_fake_script() -- TextButton_4.LocalScript 
 	local script = Instance.new('LocalScript', TextButton_4)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 	end)
 end
-coroutine.wrap(PLAMSJV_fake_script)()
-local function WBKH_fake_script() -- TextButton_5.LocalScript 
+coroutine.wrap(YQCG_fake_script)()
+local function FWHR_fake_script() -- TextButton_5.LocalScript 
 	local script = Instance.new('LocalScript', TextButton_5)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		loadstring(game:HttpGet("https://gist.githubusercontent.com/DinosaurXxX/b757fe011e7e600c0873f967fe427dc2/raw/ee5324771f017073fc30e640323ac2a9b3bfc550/dark%2520dex%2520v4"))()
 	end)
 end
-coroutine.wrap(WBKH_fake_script)()
-local function HKGFTY_fake_script() -- TextButton_6.LocalScript 
+coroutine.wrap(FWHR_fake_script)()
+local function VJKQAUK_fake_script() -- TextButton_6.LocalScript 
 	local script = Instance.new('LocalScript', TextButton_6)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		loadstring(game:HttpGet("https://pastebin.com/raw/AbDM2er1"))()
 	end)
 end
-coroutine.wrap(HKGFTY_fake_script)()
+coroutine.wrap(VJKQAUK_fake_script)()
+local function GMXLC_fake_script() -- Frame.Dragify 
+	local script = Instance.new('LocalScript', Frame)
+
+	local UIS = game:GetService("UserInputService")
+	function dragify(Frame)
+		dragToggle = nil
+		dragSpeed = 0.15
+		dragInput = nil
+		dragStart = nil
+		dragPos = nil
+		function updateInput(input)
+			Delta = input.Position - dragStart
+			Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+			game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.15), {Position = Position}):Play()
+		end
+		Frame.InputBegan:Connect(function(input)
+			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+				dragToggle = true
+				dragStart = input.Position
+				startPos = Frame.Position
+				input.Changed:Connect(function()
+					if input.UserInputState == Enum.UserInputState.End then
+						dragToggle = false
+					end
+				end)
+			end
+		end)
+		Frame.InputChanged:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+				dragInput = input
+			end
+		end)
+		game:GetService("UserInputService").InputChanged:Connect(function(input)
+			if input == dragInput and dragToggle then
+				updateInput(input)
+			end
+		end)
+	end
+	dragify(script.Parent)
+	
+end
+coroutine.wrap(GMXLC_fake_script)()
